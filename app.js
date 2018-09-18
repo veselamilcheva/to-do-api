@@ -28,26 +28,6 @@ app.get('/api/v1/todos', async (req, res) => {
     }
 });
 
-// app.get('/api/v1/todos', (req, res) => {
-//     db
-//         .getTodos()
-//         .then((results) => {
-//             res.status(200).send({
-//                 success: 'true',
-//                 message: 'todos retrieved successfully',
-//                 todos: results
-//             })
-//         })
-//         .catch((error) => {
-//             res.status(404).send({
-//                 success: 'false',
-//                 message: 'todo does not exist',
-//                 error
-//             });
-//         })
-// });
-
-
 //get single todo
 app.get('/api/v1/todos/:id', async (req, res) => {
     try {
@@ -152,12 +132,9 @@ app.post('/api/v1/todos', async (req, res) => {
         });
     }
   });
-  
-  
 
 const PORT = 5000;
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)
 });
-

@@ -1,5 +1,5 @@
-var mysql      = require('mysql');
-var util = require('util')
+var mysql = require('mysql');
+const {promisify} = require("es6-promisify");
 
 var connection = mysql.createConnection({
     host     : 'localhost',
@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     user     : 'root',
     password : '',
 });
-connection.query = util.promisify(connection.query)
+connection.query = promisify(connection.query.bind(connection))
 
 function getTodos() {
     return connection.query('SELECT * FROM todoapi')
@@ -34,5 +34,6 @@ export default {
     getTodos,
     postTodo,
     deleteTodo,
-    putTodo
+    putTodo,
+    end: connection.end.bind(connection)
 }
